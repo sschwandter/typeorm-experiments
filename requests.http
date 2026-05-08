@@ -1,0 +1,14 @@
+@baseUrl = http://localhost:3000
+
+GET {{baseUrl}}/users
+
+###
+
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "firstName": "Grace",
+  "lastName": "Hopper",
+  "isActive": true
+}
