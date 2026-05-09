@@ -5,14 +5,23 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  Logger,
 } from '@nestjs/common';
 import { File2 } from './entities/file.entity';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
+import { LoggerFactory } from '../logging/logger.factory';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  private readonly logger: Logger;
+
+  constructor(
+    private readonly usersService: UsersService,
+    loggerFactory: LoggerFactory,
+  ) {
+    this.logger = loggerFactory.create(UsersController.name);
+  }
 
   @Get()
   findAll(): Promise<User[]> {
@@ -20,8 +29,15 @@ export class UsersController {
   }
 
   @Post()
-  create(@Body() user: User): Promise<User> {
-    return this.usersService.create(user);
+  async create(@Body() user: User): Promise<User> {
+    const createdUser = await this.usersService.create(user);
+
+    this.logger.debug({
+      message: 'Created user',
+      user: createdUser,
+    });
+
+    return createdUser;
   }
 
   @Post(':id/files')

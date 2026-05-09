@@ -29,6 +29,8 @@ services:
       DB_SYNCHRONIZE: ${DB_SYNCHRONIZE:-true}
     ports:
       - '${PORT:-3000}:${PORT:-3000}'
+    volumes:
+      - app-logs:/app/logs
     depends_on:
       postgres:
         condition: service_healthy
@@ -48,5 +50,6 @@ services:
         condition: service_healthy
 
 volumes:
+  app-logs:
   postgres-18-data:
   pgadmin-data:

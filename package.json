@@ -14,7 +14,7 @@
     "start:prod": "node dist/main",
     "docker:up": "docker compose -f docker/docker-compose.yml up --build",
     "docker:down": "docker compose -f docker/docker-compose.yml down",
-    "db:up": "docker compose -f docker/docker-compose.yml -f docker/docker-compose.local-db.yml up -d postgres",
+    "db:up": "docker compose -f docker/docker-compose.yml -f docker/docker-compose.local-db.yml up -d --force-recreate postgres",
     "db:down": "docker compose -f docker/docker-compose.yml -f docker/docker-compose.local-db.yml rm -sf postgres",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
@@ -29,10 +29,12 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.1",
+    "nest-winston": "^1.10.2",
     "pg": "^8.20.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.29"
+    "typeorm": "^0.3.29",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
