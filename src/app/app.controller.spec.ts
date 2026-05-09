@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LoggerFactory } from '../logging/logger.factory';
+import { Logger } from '@nestjs/common';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -12,11 +12,13 @@ describe('AppController', () => {
       providers: [
         AppService,
         {
-          provide: LoggerFactory,
+          provide: Logger,
           useValue: {
-            create: jest.fn(() => ({
-              log: jest.fn(),
-            })),
+            log: jest.fn(),
+            error: jest.fn(),
+            warn: jest.fn(),
+            debug: jest.fn(),
+            verbose: jest.fn(),
           },
         },
       ],
@@ -24,6 +26,7 @@ describe('AppController', () => {
 
     appController = app.get<AppController>(AppController);
   });
+
 
   describe('root', () => {
     it('should return "Hello World!"', () => {

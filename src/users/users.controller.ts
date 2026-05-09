@@ -10,18 +10,13 @@ import {
 import { File2 } from './entities/file.entity';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
-import { LoggerFactory } from '../logging/logger.factory';
 
 @Controller('users')
 export class UsersController {
-  private readonly logger: Logger;
-
   constructor(
     private readonly usersService: UsersService,
-    loggerFactory: LoggerFactory,
-  ) {
-    this.logger = loggerFactory.create(UsersController.name);
-  }
+    private readonly logger: Logger,
+  ) {}
 
   @Get()
   findAll(): Promise<User[]> {
