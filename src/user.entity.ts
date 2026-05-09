@@ -4,17 +4,17 @@ import { File2 } from './file';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id?: number;
+  id!: number;
 
   @Column()
-  firstName?: string;
+  firstName!: string;
 
   @Column()
-  lastName?: string;
+  lastName!: string;
 
   @Column({ default: true })
-  isActive?: boolean;
+  isActive!: boolean;
 
   @OneToMany(() => File2, (file: File2) => file.user)
-  files?: File2[];
+  files!: File2[];
 }

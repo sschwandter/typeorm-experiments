@@ -12,3 +12,13 @@ Content-Type: application/json
   "lastName": "Hopper",
   "isActive": true
 }
+
+###
+
+POST {{baseUrl}}/users/1/files
+Content-Type: application/json
+
+{
+  "name": "profile.png",
+  "type": "image/png"
+}

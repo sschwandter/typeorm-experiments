@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
+import { File2 } from './file';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 
@@ -14,5 +22,13 @@ export class UsersController {
   @Post()
   create(@Body() user: User): Promise<User> {
     return this.usersService.create(user);
+  }
+
+  @Post(':id/files')
+  addFile(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() file: File2,
+  ): Promise<File2> {
+    return this.usersService.addFile(id, file);
   }
 }
