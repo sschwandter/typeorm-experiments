@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { File2 } from './file';
-import { User } from './user.entity';
+import { File2 } from './entities/file.entity';
+import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
 type MockUsersRepository = jest.Mocked<
