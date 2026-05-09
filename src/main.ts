@@ -16,8 +16,6 @@ async function bootstrap() {
     logger,
   });
 
-  app.useLogger(logger);
-
   await app.listen(port);
 
   logger.log(`Application listening on port ${port}`, context);
